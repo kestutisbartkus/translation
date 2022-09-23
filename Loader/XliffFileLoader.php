@@ -210,7 +210,7 @@ class XliffFileLoader implements LoaderInterface
     private function getSchema($xliffVersion)
     {
         if ('1.2' === $xliffVersion) {
-            $schemaSource = file_get_contents(__DIR__.'/schema/dic/xliff-core/xliff-core-1.2-strict.xsd');
+            $schemaSource = $this->getXliff1Schema();
             $xmlUri = 'http://www.w3.org/2001/xml.xsd';
         } elseif ('2.0' === $xliffVersion) {
             $schemaSource = file_get_contents(__DIR__.'/schema/dic/xliff-core/xliff-core-2.0.xsd');
@@ -339,5 +339,10 @@ class XliffFileLoader implements LoaderInterface
         }
 
         return $notes;
+    }
+
+    protected function getXliff1Schema()
+    {
+        return file_get_contents(__DIR__ . '/schema/dic/xliff-core/xliff-core-1.2-strict.xsd');
     }
 }
